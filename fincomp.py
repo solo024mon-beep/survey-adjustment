@@ -78,17 +78,17 @@ A_reduced, L_reduced, P, unknown_stations, kept_labels, row_labels = (
 
 # Provisional coordinates for the unknown stations
 # Must cover every station in `unknown_stations`.
-prov_coords = {
+prov_coords: dict[str, tuple[float, float]] = {
     'B': (12349.5,14708.750),
     'D': (17927.677,11399.956),
     'E': (13674.750,10195.970),
     'F': (14696.838,12292.118)
 }
 
-prov_values = build_prov_values( # type: ignore
+prov_values: list[float] = build_prov_values(
     unknown_stations,
     prov_coords
-)
+) # type: ignore[assignment,arg-type]
 
 
 # Least-squares computation for the survey

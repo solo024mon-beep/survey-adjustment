@@ -1,5 +1,3 @@
-import math
-
 def dd2dms(dd:int):
     """
     Parameters:
