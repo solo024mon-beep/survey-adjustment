@@ -1,3 +1,4 @@
+import numpy as np
 import pandas as pd
 from modules.errorellipse import error_ellipse
 from modules.Survey import traverse_tables
@@ -85,10 +86,10 @@ prov_coords: dict[str, tuple[float, float]] = {
     'F': (14696.838,12292.118)
 }
 
-prov_values: list[float] = build_prov_values(
+prov_values = np.asarray(build_prov_values(
     unknown_stations,
     prov_coords
-) # type: ignore[assignment,arg-type]
+), dtype=float)
 
 
 # Least-squares computation for the survey
@@ -202,14 +203,10 @@ y = (13.25, 10.05, 22, 8, 10.95)
 
 result = correlation(x, y)
 
-# Pearson's r
-result['r']
-
-# Slope and intercept of y = ax + b
-result['a'], result['b']
-
-# Estimate y at a new x
-result['predict'](12)
+# Pearson's r, slope/intercept, and an estimate at x=12
+print(f"r = {result['r']:.4f}")
+print(f"y = {result['a']:.4f}x + {result['b']:.4f}")
+print(f"Predicted y(12) = {result['predict'](12):.4f}")
 
 
 # ============================================================
