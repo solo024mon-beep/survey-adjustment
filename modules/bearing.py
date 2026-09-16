@@ -15,7 +15,7 @@ def dd2dms(dd:int):
     s = (((dd-d)*60) - m)* 60
     return d,m,s
 
-def dms_to_decimal(value:str):
+def dms_to_decimal(value:str) -> float:
     """
 
     Parameters:
@@ -32,7 +32,7 @@ def dms_to_decimal(value:str):
     decimal_degrees = degrees + (mnt / 60) + (sec / 3600)
     return decimal_degrees
 
-def dif_DMS(obs_bear, cal_bear):
+def dif_DMS(obs_bear: str, cal_bear: str):
     """finding difference in string bearings"""
     dif = dms_to_decimal(obs_bear) - dms_to_decimal(cal_bear)
     return dd2dms(dif)
